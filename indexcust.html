@@ -1,0 +1,144 @@
+<!-- BSD 3-Clause License
+
+Copyright (c) 2022, silorenz (Simon Lorenz)
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this
+   list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice,
+   this list of conditions and the following disclaimer in the documentation
+   and/or other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its
+   contributors may be used to endorse or promote products derived from
+   this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
+
+<!DOCTYPE HTML>
+
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <script type="text/javascript" src="js/code.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+<body>
+    <div id="header">
+        <span id="headerLineText">Robot Controller</span><span id="statusLineText">Status:</span><span id="statusLine">Disconnected</span>
+    </div>
+
+    <!-- Robot status -->
+    <div id="robotStatus" class="panel">
+        <b>Robot Status:</b>
+        <div class="innerPanel">
+            <table id="robotStatusData">
+                <tbody>
+                <tr>
+                    <td>CPU Temp.:</td><td id="CPUTemp"></td>
+                </tr>
+                <tr>
+                    <td>CPU Usage:</td><td id="CPUUsage"></td>
+                </tr>
+                <tr>
+                    <td>RAM Usage:</td><td id="RAMUsage"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Live camera-->
+    <div id="liveVideo" class="panel">
+        <b>Video Streaming</b><br>
+        <div class="innerPanel">
+            <img id="videoStream" alt="No Video yet">
+        </div>
+    </div>
+
+    <!-- Robot drive control -->
+    <div id="driveCtrl" class="panel">
+        <b>Move Control</b>
+        <div class="innerPanel">
+            <table class="table">
+                <tbody>
+                <tr>
+                    <td></td>
+                    <td style="text-align: center; vertical-align: middle;"><input type="button" class="button" id="btnDCForward" value="Forward"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; vertical-align: middle;"><input type="button" class="button" id="btnDCLeft" value="Left"></td>
+                    <td></td>
+                    <td style="text-align: center; vertical-align: middle;"><input type="button" class="button" id="btnDCRight" value="Right"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td style="text-align: center; vertical-align: middle;"><input type="button" class="button" id="btnDCBackward" value="Backward"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td style="text-align: center; vertical-align: middle;"><input type="button" class="button" id="btnDCStop" value="Stop"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="text-align: right; vertical-align: middle;">Speed:</td>
+                    <td colspan="2"><input type="range" id="rangeDCSpeed" name="rangeSpeed" min="0" max="100" value="100" step="1" onchange="speedChange(this.value)"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Robot arm control -->
+    <div id="armCtrl" class="panel">
+        <b>Arm Control</b>
+        <div class="innerPanel">
+            <table class="table">
+                <tbody>
+                <tr>
+                    <td></td>
+                    <td style="text-align: center; vertical-align: middle;"><input type="button" class="button" id="btnAGrab" value="Grab"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; vertical-align: middle;"><input type="button" class="button" id="btnALeft" value="Left"></td>
+                    <td style="text-align: center; vertical-align: middle;"><input type="button" class="button" id="btnALoose" value="Loose"></td>
+                    <td style="text-align: center; vertical-align: middle;"><input type="button" class="button" id="btnARight" value="Right"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; vertical-align: middle;"><input type="button" class="button" id="btnAHandUp" value="Hand Up"></td>
+                    <td style="text-align: center; vertical-align: middle;"><input type="button" class="button" id="btnAUp" value="Up"></td>
+                    <td style="text-align: center; vertical-align: middle;"><input type="button" class="button" id="btnAArmUp" value="Arm Up"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; vertical-align: middle;"><input type="button" class="button" id="btnAHandDown" value="Hand Down"></td>
+                    <td style="text-align: center; vertical-align: middle;"><input type="button" class="button" id="btnADown" value="Down"></td>
+                    <td style="text-align: center; vertical-align: middle;"><input type="button" class="button" id="btnAArmDown" value="Arm Down"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; vertical-align: middle;"><input type="button" class="button" id="btnRCamUp" value="Cam Up"></td>
+                    <td style="text-align: center; vertical-align: middle;"><input type="button" class="button" id="btnAHome" value="Home"></td>
+                    <td style="text-align: center; vertical-align: middle;"><input type="button" class="button" id="btnRCamDown" value="Cam Down"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>
