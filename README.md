@@ -38,10 +38,10 @@ Save and close the file.
 
 Restart the webserver.py
 
-###Open the custom GUI in a Webbrowser:
-<ip>:5000/cust
-The original GUI is still available under:
-<ip>:5000
+## Open the custom GUI in a Webbrowser (add /cust to the link):
+\<ip \| hostname\>:5000/cust
+
+The original GUI is still available under: \<ip \| hostname\>:5000
 
 
 ## To make Hand and Arm up and down buttons work, add the following in file:
@@ -73,3 +73,5 @@ elif 'forearmdown' == command_input:
 elif 'FAstop' in command_input:
     H2_sc.stopWiggle()
 ```
+
+Needs a webserver.py restart
