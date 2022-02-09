@@ -2,6 +2,9 @@
 ## A simple and easy to change Web GUI for the Adeept RaspTank.
 
 Just a starter for those who are learning to code Python and Web interfaces, but don’t want to also learn the vue.js Javascript Framework. It helps to easily add new functions to the GUI that control new code in the robot.
+
+![Custom GUI for Adeept Rasp Tank](CustRobotController.png)
+
 ## Do the following to get it going:
 ### Copy files:
 indexcust.html -> \<your adeept_rasptank path\>/server/dist/
