@@ -111,14 +111,14 @@ function ensureConnected() {
 
 // drive control
 function runDCForward() {
-    ensureConnectedAndSend("\"backward\"");
+    ensureConnectedAndSend("\"forward\"");
 }
 function stopDCForward() {
     ensureConnectedAndSend("\"DS\"");
 }
 
 function runDCBackward() {
-    ensureConnectedAndSend("\"forward\"");
+    ensureConnectedAndSend("\"backward\"");
 }
 function stopDCBackward() {
     ensureConnectedAndSend("\"DS\"");
@@ -246,7 +246,7 @@ function setRobotStatus(statusData) {
     // Sample for get_info: "{"status": "ok", "title": "get_info", "data": ["45.3", "16.5", "4.3"]}"
     setRobotStatusColor("CPUTemp", statusData[0], " °C", 55, 70);
     setRobotStatusColor("CPUUsage", statusData[1], " %", 70, 85);
-    setRobotStatusColor("RAMUsage", statusData[1], " %", 70, 85);
+    setRobotStatusColor("RAMUsage", statusData[2], " %", 70, 85);
 }
 
 function setRobotStatusColor(id, number, unit, med, high) {
